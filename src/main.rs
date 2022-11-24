@@ -78,10 +78,7 @@ impl Canvas {
        }
    }
 
-
-   fn fill_voronoi_areas(&mut self) {
-//       self.fill(points[0].color);
-
+   fn fill_voronoi_cells(&mut self) {
       for i in 0..HEIGHT {
         for j in 0..WIDTH {
           let mut points = self.points.iter();
@@ -98,24 +95,6 @@ impl Canvas {
 
         }
       }
-
-
-//            self.fill_voronoi_cell(&p);
-/*           for i in 0..HEIGHT {
-               for j in 0..WIDTH {
-                   if Self::sqr_dst((i, j), p.pos) < Self::sqr_dst((i, j), last.pos) {
-                       self.pixel[i][j] = p.color;
-                   }
-               }
-           }
-
-           last = p;*/
-//       }
-   }
-
-//   fn as_u6(byte: u32) -> [u8; 3] {
-
-//   }
 
    fn save_as_netpbm(&self, path: &str) -> Result<(), Box<dyn std::error::Error>> {
        let mut file = BufWriter::new(File::create(path)?);
@@ -173,7 +152,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 //    canvas.point((320, 300), 2, COLOR_RED);
 //    canvas.point((120, 290), 2, COLOR_GREEN);
-    canvas.fill_voronoi_areas();
+    canvas.fill_voronoi_cells();
     canvas.save_as_netpbm("foobar.ppm")?;
 
     Ok(())
